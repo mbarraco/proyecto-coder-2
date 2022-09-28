@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from AppCoder.views import mostrar_inicio
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("inicio/", mostrar_inicio)
 ]
