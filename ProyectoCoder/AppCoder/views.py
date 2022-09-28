@@ -1,6 +1,9 @@
 from django.shortcuts import render
 
+from AppCoder.models import Estudiante
 
 def mostrar_inicio(request):
-	return render(request, "AppCoder/inicio.html")
+    estudiante = Estudiante(nombre="Exequiel", apellido="Velazquez", email="eze@hotmail.com")
+    contexto = {"estudiante_1": estudiante}
+    return render(request, "AppCoder/inicio.html", contexto)
 
