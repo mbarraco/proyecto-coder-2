@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.urls import path
 
-from AppCoder.views import mostrar_inicio
+from AppCoder.views import entregables, estudiantes, inicio, cursos, profesores
 
 urlpatterns = [
-    path("inicio/", mostrar_inicio)
+    path("inicio/", inicio),
+    path("entregables/", entregables),
+    path("estudiantes/", estudiantes),
+    path("cursos/", cursos),
+    path("profesores/", profesores),
 ]
