@@ -21,6 +21,6 @@ urlpatterns = [
     path("inicio/", inicio, name="inicio"),
     path("entregables/", entregables, name="entregables"),
     path("estudiantes/", estudiantes, name="estudiantes"),
-    path("cursos/", cursos, name="cursos"),
+    path("cursos/", cursos, name="mis_cursos"),
     path("profesores/", profesores, name="profesores"),
 ]
