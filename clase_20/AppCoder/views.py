@@ -2,6 +2,11 @@ from django.shortcuts import render
 
 from AppCoder.models import Estudiante
 
+
+def ayuda(request):
+    return render(request, "AppCoder/ayuda.html")
+
+
 def inicio(request):
     estudiante = Estudiante(nombre="Exequiel", apellido="Velazquez", email="eze@hotmail.com")
     estudiante.save()
