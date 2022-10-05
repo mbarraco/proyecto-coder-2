@@ -1,7 +1,7 @@
 # Entrega intermedia del Proyecto Final
 
 
-Alumno: John Smith
+* Alumno: John Smith
 
 Este proyecto....
 
