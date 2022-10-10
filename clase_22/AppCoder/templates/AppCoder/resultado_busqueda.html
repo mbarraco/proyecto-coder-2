@@ -1,0 +1,11 @@
+<p>Estamos buscando la camada: {{ camada }}</p>
+
+{% if cursos_encontrados %}
+
+<ul>
+{% for curso in cursos_encontrados %}
+    <li>{{curso.nombre}} (camada {{curso.camada}})</li>
+{% endfor %}
+</ul>
+
+{% endif %}

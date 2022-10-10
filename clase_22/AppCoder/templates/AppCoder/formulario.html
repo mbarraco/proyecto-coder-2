@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Formulario</title>
+</head>
+<body style="background-color: pink;">
+    <form action="/AppCoder/formulario/" method="POST">{% csrf_token %}
+        <p>Curso: <input type="text" name="curso"> </p>
+        <p>Camada: <input type="number" name="camada"> </p>
+        <input type="submit" value="Guardar">
+    </form>
+</body>
+</html>
+
