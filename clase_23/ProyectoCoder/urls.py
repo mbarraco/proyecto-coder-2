@@ -1,4 +1,4 @@
-"""ProyectoFinal URL Configuration
+"""ProyectoCoder URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -16,4 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-urlpatterns = [path("admin/", admin.site.urls), path("blog/", include("blog.urls"))]
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("AppCoder/", include("AppCoder.urls")),
+    path("appcoder23/", include("AppCoder23.urls")),
+]

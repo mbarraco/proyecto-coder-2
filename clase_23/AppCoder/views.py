@@ -6,7 +6,7 @@ from AppCoder.models import Curso, Estudiante
 
 
 def ayuda(request):
-    return render(request, "AppCoder/ayuda.html")
+    return render(request, "AppCoder23/ayuda.html")
 
 
 def inicio(request):
@@ -15,32 +15,32 @@ def inicio(request):
     )
     estudiante.save()
     contexto = {"estudiante_1": estudiante}
-    return render(request, "AppCoder/inicio.html", contexto)
+    return render(request, "AppCoder23/inicio.html", contexto)
 
 
 def cursos(request):
-    return render(request, "AppCoder/cursos.html")
+    return render(request, "AppCoder23/cursos.html")
 
 
 def profesores(request):
-    return render(request, "AppCoder/profesores.html")
+    return render(request, "AppCoder23/profesores.html")
 
 
 def estudiantes(request):
-    return render(request, "AppCoder/estudiantes.html")
+    return render(request, "AppCoder23/estudiantes.html")
 
 
 def entregables(request):
-    return render(request, "AppCoder/entregables.html")
+    return render(request, "AppCoder23/entregables.html")
 
 
 def procesar_formulario(request):
     if request.method != "POST":
-        return render(request, "AppCoder/formulario.html")
+        return render(request, "AppCoder23/formulario.html")
 
     curso = Curso(nombre=request.POST["curso"], camada=request.POST["camada"])
     curso.save()
-    return render(request, "AppCoder/inicio.html")
+    return render(request, "AppCoder23/inicio.html")
 
 
 def procesar_formulario_2(request):
@@ -52,19 +52,19 @@ def procesar_formulario_2(request):
             informacion = mi_formulario.cleaned_data
             curso = Curso(nombre=informacion["curso"], camada=informacion["camada"])
             curso.save()
-            return render(request, "AppCoder/inicio.html")
+            return render(request, "AppCoder23/inicio.html")
 
     contexto = {"formulario": mi_formulario}
 
-    return render(request, "AppCoder/formulario_2.html", contexto)
+    return render(request, "AppCoder23/formulario_2.html", contexto)
 
 
 def busqueda(request):
-    return render(request, "AppCoder/busqueda.html")
+    return render(request, "AppCoder23/busqueda.html")
 
 
 def busqueda_2(request):
-    return render(request, "AppCoder/busqueda_2.html")
+    return render(request, "AppCoder23/busqueda_2.html")
 
 
 def buscar(request):
@@ -82,7 +82,7 @@ def buscar_2(request):
 
         contexto = {"camada": camada_a_buscar, "cursos_encontrados": cursos}
 
-        return render(request, "AppCoder/resultado_busqueda.html", contexto)
+        return render(request, "AppCoder23/resultado_busqueda.html", contexto)
 
 
 from django.views.generic import (
@@ -96,18 +96,18 @@ from django.views.generic import (
 
 class CursoList(ListView):
     model = Curso
-    template_name = "AppCoder/cursos_list.html"
+    template_name = "AppCoder23/cursos_list.html"
 
 
 def listar_cursos(request):
     todos_los_cursos = Curso.objects.all()
     contexto = {"cursos_encontrados": todos_los_cursos}
-    return render(request, "AppCoder/listar-cursos.html", contexto)
+    return render(request, "AppCoder23/listar-cursos.html", contexto)
 
 
 class CursoDetalle(DetailView):
     model = Curso
-    template_name = "AppCoder/curso_detalle.html"
+    template_name = "AppCoder23/curso_detalle.html"
 
 
 from django.urls import reverse
@@ -123,18 +123,18 @@ class CursoCreacion(CreateView):
 
 class CursoUpdateView(UpdateView):
     model = Curso
-    success_url = "/AppCoder/curso/list"
+    success_url = "/AppCoder23/curso/list"
     fields = ["nombre", "camada"]
 
 
 class CursoDelete(DeleteView):
 
     model = Curso
-    success_url = "/AppCoder/curso/list"
+    success_url = "/AppCoder23/curso/list"
 
 
 def busqueda_de_curso(request):
-    return render(request, "AppCoder/busqueda_de_curso.html")
+    return render(request, "AppCoder23/busqueda_de_curso.html")
 
 
 def buscar_curso(request):
@@ -146,4 +146,4 @@ def buscar_curso(request):
 
         contexto = {"nombre": nombre_a_buscar, "cursos_encontrados": cursos}
 
-        return render(request, "AppCoder/resultado_busqueda_nombre.html", contexto)
+        return render(request, "AppCoder23/resultado_busqueda_nombre.html", contexto)

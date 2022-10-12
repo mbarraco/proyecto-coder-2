@@ -46,7 +46,7 @@ def procesar_formulario(request):
 def procesar_formulario_2(request):
     if request.method != "POST":
         mi_formulario = CursoFormulario()
-    else: 
+    else:
         mi_formulario = CursoFormulario(request.POST)
         if mi_formulario.is_valid():
             informacion = mi_formulario.cleaned_data
@@ -55,12 +55,13 @@ def procesar_formulario_2(request):
             return render(request, "AppCoder/inicio.html")
 
     contexto = {"formulario": mi_formulario}
-    
+
     return render(request, "AppCoder/formulario_2.html", contexto)
 
 
 def busqueda(request):
     return render(request, "AppCoder/busqueda.html")
+
 
 def busqueda_2(request):
     return render(request, "AppCoder/busqueda_2.html")
@@ -68,21 +69,17 @@ def busqueda_2(request):
 
 def buscar(request):
     respuesta = f"Buscando la camada nro: {request.GET['camada']}"
-    return HttpResponse(respuesta)   # TODO: podríamos mostrarla, no? 
+    return HttpResponse(respuesta)  # TODO: podríamos mostrarla, no?
 
 
 def buscar_2(request):
 
     if not request.GET["camada"]:
-         return HttpResponse("No enviaste datos")
+        return HttpResponse("No enviaste datos")
     else:
         camada_a_buscar = request.GET["camada"]
         cursos = Curso.objects.filter(camada=camada_a_buscar)
 
+        contexto = {"camada": camada_a_buscar, "cursos_encontrados": cursos}
 
-        contexto = {
-            "camada": camada_a_buscar,
-            "cursos_encontrados": cursos
-        }
-        
         return render(request, "AppCoder/resultado_busqueda.html", contexto)

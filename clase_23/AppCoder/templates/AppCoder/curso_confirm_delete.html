@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Curso Borrar</title>
+</head>
+<body style="background-color: yellowgreen;">
+
+    <form action="" method="POST">{% csrf_token %}
+        <table>
+            Estás seguro de que querés borrar el curso {{ object }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+
+
+</body>
+</html>

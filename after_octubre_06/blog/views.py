@@ -6,7 +6,6 @@ from blog.models import Articulo
 from blog.forms import ArticuloForm, AutorForm, SeccionForm
 
 
-
 def buscar(request):
     if request.method == "GET":
         return render(request, "blog/formulario-de-busqueda.html")
