@@ -1,0 +1,15 @@
+<a href="{% url 'CursoList' %}">Mis Cursos</a>
+<a href="{% url 'CursoNew' %}">Agregar Curso</a>
+
+{% if not request.user.is_authenticated %}
+    <a href="{% url 'Login' %}">Login</a>
+{% endif %}
+
+{% if request.user.is_authenticated %}
+    <a href="{% url 'Logout' %}">Logout</a>
+{% endif %}
+
+<br>
+<br>
+{% block inserte_aqui_su_contenido %}
+{% endblock %}

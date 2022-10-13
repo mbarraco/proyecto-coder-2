@@ -1,0 +1,9 @@
+{% extends "AppCoder24/madre.html" %}
+{% block inserte_aqui_su_contenido %}
+<form action="" method="POST">
+    {% csrf_token %}
+    Estás seguro de que querés borrar el curso: <strong>{{ object }}</strong> ?
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

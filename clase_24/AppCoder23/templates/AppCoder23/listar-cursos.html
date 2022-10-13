@@ -1,0 +1,7 @@
+{% extends "AppCoder23/madre.html" %}
+{% block inserte_aqui_su_contenido %}
+{% for curso in cursos_encontrados %}
+    {{ curso.nombre }}  (camada: {{ curso.camada }} )
+    <br>
+{% endfor %}
+{% endblock %}
