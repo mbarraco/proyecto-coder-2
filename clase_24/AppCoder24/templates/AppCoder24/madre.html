@@ -1,12 +1,20 @@
-<a href="{% url 'CursoList' %}">Mis Cursos</a>
-<a href="{% url 'CursoNew' %}">Agregar Curso</a>
+<p><a href="{% url 'Inicio' %}">Inicio</a></p>
+<p><a href="{% url 'CursoList' %}">Mis Cursos</a></p>
+<p><a href="{% url 'CursoNew' %}">Agregar Curso</a></p>
 
 {% if not request.user.is_authenticated %}
-    <a href="{% url 'Login' %}">Login</a>
-{% endif %}
+    <p><a href="{% url 'Login' %}">Login</a></p>
+    <p><a href="{% url 'Register' %}">Registrarse</a></p>
+    {% endif %}
 
-{% if request.user.is_authenticated %}
-    <a href="{% url 'Logout' %}">Logout</a>
+    {% if request.user.is_authenticated %}
+    <p><a href="{% url 'EditarPerfil' %}">Editar Perfil</a></p>
+    <p><a href="{% url 'Logout' %}">Logout</a></p>
+    <p><a href="{% url 'AgregarAvatar' %}">Agregar Avatar</a></p>
+    {% if avatar %}
+        <img height="40px" src="{{ avatar }}"/>
+    {% endif %}
+    <p> Hola, {{ user.username }} !!</p>
 {% endif %}
 
 <br>

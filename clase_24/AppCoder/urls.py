@@ -57,7 +57,7 @@ urlpatterns = [
     # URLS CLASE 22
     path("cursos-lista/", listar_cursos),
     path("curso/list", CursoList.as_view(), name="CursoList"),
-    path("r'(?P<pk>\d+)^$'", CursoDetalle.as_view(), name="CursoDetail"),
+    path("curso/<pk>'", CursoDetalle.as_view(), name="CursoDetail"),
     path("curso-nuevo/", CursoCreacion.as_view(), name="CursoNew"),
     path("editar/<pk>", CursoUpdateView.as_view(), name="CursoUpdate"),
     path("borrar/<pk>", CursoDelete.as_view(), name="CursoDelete"),

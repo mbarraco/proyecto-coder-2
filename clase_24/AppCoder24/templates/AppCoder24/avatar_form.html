@@ -1,0 +1,8 @@
+{% extends "AppCoder24/madre.html" %}
+{% block inserte_aqui_su_contenido %}
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}

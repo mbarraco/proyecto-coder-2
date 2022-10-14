@@ -9,20 +9,22 @@ from django.views.generic import (
 )
 from django.urls import reverse
 
-from AppCoder24.models import Curso
+from AppCoder24.models import Avatar, Curso
 
 # Clase 23 ####
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
-###############
+# Clase 24 ####
+from AppCoder24.forms import AvatarForm, UserEditionForm
+
 
 ###############################################################################
 # Clase 22
 ###############################################################################
 
 
-class CursoList(ListView, LoginRequiredMixin):
+class CursoList(LoginRequiredMixin, ListView):
     model = Curso
     template_name = "AppCoder24/cursos_list.html"
 
@@ -34,24 +36,24 @@ def listar_cursos(request):
     return render(request, "AppCoder24/listar-cursos.html", contexto)
 
 
-class CursoDetalle(DetailView, LoginRequiredMixin):
+class CursoDetalle(LoginRequiredMixin, DetailView):
     model = Curso
     template_name = "AppCoder24/curso_detalle.html"
 
 
-class CursoCreacion(CreateView, LoginRequiredMixin):
+class CursoCreacion(LoginRequiredMixin, CreateView):
     model = Curso
     fields = ["nombre", "camada"]
     success_url = "/appcoder24/curso/list"
 
 
-class CursoUpdateView(UpdateView, LoginRequiredMixin):
+class CursoUpdateView(LoginRequiredMixin, UpdateView):
     model = Curso
     success_url = "/appcoder24/curso/list"
     fields = ["nombre", "camada"]
 
 
-class CursoDelete(DeleteView, LoginRequiredMixin):
+class CursoDelete(LoginRequiredMixin, DeleteView):
 
     model = Curso
     success_url = "/appcoder24/curso/list"
@@ -81,7 +83,7 @@ def buscar_curso(request):
 
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView
 
 # from django.contrib.auth.mixins import LoginRequiredMixin
 # from django.contrib.auth.decorators import login_required
@@ -91,13 +93,15 @@ class MyLogin(LoginView):
     template_name = "AppCoder24/login.html"
 
 
-class MyLogout(LogoutView, LoginRequiredMixin):
-    template_name = "AppCoder24/logout.html"
-
-
 @login_required
 def mostrar_inicio(request):
-    return render(request, "AppCoder24/inicio.html")
+    avatar = Avatar.objects.filter(user=request.user).first()
+    if avatar is not None:
+        contexto = {"avatar": avatar.imagen.url}
+    else:
+        contexto = {}
+
+    return render(request, "AppCoder24/inicio.html", contexto)
 
 
 # Eto es lo que muestra la slide de CODER
@@ -132,7 +136,6 @@ def login_request(request):
                 {"mensaje": "El usuario no existe en nuestra appliación"},
             )
 
-
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -150,3 +153,44 @@ def register(request):
         form = UserCreationForm()
 
     return render(request, "AppCoder24/registro.html", {"form": form})
+
+@login_required
+def editar_perfil(request):
+    user = request.user
+
+    if request.method != "POST":
+        form = UserEditionForm(initial={"email": user.email})
+    else:
+        form = UserEditionForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            user.email = data["email"]
+            user.first_name = data["first_name"]
+            user.last_name = data["last_name"]
+            user.set_password(data["password1"])
+            user.save()
+            return render(request, "AppCoder24/inicio.html")
+
+
+    contexto = {
+        "user": user,
+        "form": form
+    }
+    return render(request, "AppCoder24/editarPerfil.html", contexto)
+
+
+@login_required
+def agregar_avatar(request):
+    if request.method != "POST":
+        form = AvatarForm()
+    else:
+        form = AvatarForm(request.POST, request.FILES)
+        if form.is_valid():
+            Avatar.objects.filter(user=request.user).delete()
+            form.save()
+            return render(request, "AppCoder24/inicio.html")
+
+    contexto = {
+        "form": form
+    }
+    return render(request, "AppCoder24/avatar_form.html", contexto)
