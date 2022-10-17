@@ -23,7 +23,7 @@ class UserEditionForm(UserCreationForm):
 class AvatarForm(forms.ModelForm):
 
     imagen = forms.ImageField()
-    
+
     class Meta:
         model = Avatar
         fields = ["imagen", "user"]

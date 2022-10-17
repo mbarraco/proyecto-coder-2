@@ -136,6 +136,7 @@ def login_request(request):
                 {"mensaje": "El usuario no existe en nuestra appliación"},
             )
 
+
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -154,6 +155,7 @@ def register(request):
 
     return render(request, "AppCoder24/registro.html", {"form": form})
 
+
 @login_required
 def editar_perfil(request):
     user = request.user
@@ -171,11 +173,7 @@ def editar_perfil(request):
             user.save()
             return render(request, "AppCoder24/inicio.html")
 
-
-    contexto = {
-        "user": user,
-        "form": form
-    }
+    contexto = {"user": user, "form": form}
     return render(request, "AppCoder24/editarPerfil.html", contexto)
 
 
@@ -190,7 +188,5 @@ def agregar_avatar(request):
             form.save()
             return render(request, "AppCoder24/inicio.html")
 
-    contexto = {
-        "form": form
-    }
+    contexto = {"form": form}
     return render(request, "AppCoder24/avatar_form.html", contexto)

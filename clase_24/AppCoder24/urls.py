@@ -51,11 +51,15 @@ urlpatterns = [
     # CLASE 23
     path("inicio/", mostrar_inicio, name="Inicio"),
     path("login/", MyLogin.as_view(), name="Login"),
-    path("logout/", LogoutView.as_view(template_name="AppCoder24/logout.html"), name="Logout"),
+    path(
+        "logout/",
+        LogoutView.as_view(template_name="AppCoder24/logout.html"),
+        name="Logout",
+    ),
     # path("login2/", login_request, name="Login2"),  # Propuesta en las Slides
     path("register/", register, name="Register"),
     # Clase 24
     path("curso/<pk>'", CursoDetalle.as_view(), name="CursoDetail"),
-    path("editar-perfil/", editar_perfil , name="EditarPerfil"),
+    path("editar-perfil/", editar_perfil, name="EditarPerfil"),
     path("agregar-avatar/", agregar_avatar, name="AgregarAvatar"),
 ]

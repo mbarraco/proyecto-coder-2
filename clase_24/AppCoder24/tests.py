@@ -4,7 +4,6 @@ from AppCoder24.models import Curso
 
 
 class ViewTestCase(TestCase):
-
     def test_crear_curso(self):
         ahora = datetime.now()
         curso = Curso.objects.create(nombre="test 1234", camada="9091")
