@@ -5,9 +5,9 @@
 {% if not request.user.is_authenticated %}
     <p><a href="{% url 'Login' %}">Login</a></p>
     <p><a href="{% url 'Register' %}">Registrarse</a></p>
-    {% endif %}
+{% endif %}
 
-    {% if request.user.is_authenticated %}
+{% if request.user.is_authenticated %}
     <p><a href="{% url 'EditarPerfil' %}">Editar Perfil</a></p>
     <p><a href="{% url 'Logout' %}">Logout</a></p>
     <p><a href="{% url 'AgregarAvatar' %}">Agregar Avatar</a></p>

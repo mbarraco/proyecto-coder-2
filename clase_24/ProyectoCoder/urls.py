@@ -26,4 +26,5 @@ urlpatterns = [
     path("appcoder24/", include("AppCoder24.urls")),
 ]
 
+# CLASE 24
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

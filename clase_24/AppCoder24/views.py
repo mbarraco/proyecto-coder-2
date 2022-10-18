@@ -32,7 +32,12 @@ class CursoList(LoginRequiredMixin, ListView):
 @login_required
 def listar_cursos(request):
     todos_los_cursos = Curso.objects.all()
-    contexto = {"cursos_encontrados": todos_los_cursos}
+    avatar = Avatar.objects.filter(user=request.user).first()
+    contexto = {
+        "cursos_encontrados": todos_los_cursos,
+        "avatar": avatar.imagen.url
+    }
+
     return render(request, "AppCoder24/listar-cursos.html", contexto)
 
 
@@ -159,7 +164,7 @@ def register(request):
 @login_required
 def editar_perfil(request):
     user = request.user
-
+    avatar = Avatar.objects.filter(user=request.user).first()
     if request.method != "POST":
         form = UserEditionForm(initial={"email": user.email})
     else:
@@ -171,9 +176,13 @@ def editar_perfil(request):
             user.last_name = data["last_name"]
             user.set_password(data["password1"])
             user.save()
-            return render(request, "AppCoder24/inicio.html")
+            return render(request, "AppCoder24/inicio.html", {"avatar": avatar.imagen.url})
 
-    contexto = {"user": user, "form": form}
+    contexto = {
+        "user": user,
+        "form": form,
+        "avatar": avatar.imagen.url
+    }
     return render(request, "AppCoder24/editarPerfil.html", contexto)
 
 
