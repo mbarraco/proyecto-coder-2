@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "AppCoder",
     "AppCoder23",
     "AppCoder24",
+    "mensages"
 ]
 
 MIDDLEWARE = [

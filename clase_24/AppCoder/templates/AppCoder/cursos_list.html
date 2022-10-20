@@ -1,16 +1,25 @@
 
 <h1>Cursos de Coder - Python </h1>
-<ul>
-    {% for curso in object_list %}
-    
-    <li>
-        <p>Nombre: {{ curso.nombre }}</p>
-        <p>
-            <a href="{% url 'CursoDetail' curso.id %}">Ver curso</a>
-            <a href="{% url 'CursoUpdate' curso.id %}">Editar</a>
-            <a href="{% url 'CursoDelete' curso.id %}">Borrar</a>
-        </p>
-        
-    </li>
-    {% endfor %}
-</ul>
+
+NO HAY CURSOS
+
+
+{% if object_list %}
+
+    <ul>
+        {% for curso in object_list %}
+
+        <li>
+            <p>Nombre: {{ curso.nombre }}</p>
+            <p>
+                <a href="{% url 'CursoDetail' curso.id %}">Ver curso</a>
+                <a href="{% url 'CursoUpdate' curso.id %}">Editar</a>
+                <a href="{% url 'CursoDelete' curso.id %}">Borrar</a>
+            </p>
+
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+NO HAY CURSOS
+{% endif %}

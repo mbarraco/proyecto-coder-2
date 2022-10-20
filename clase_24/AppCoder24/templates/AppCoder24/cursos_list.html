@@ -1,9 +1,12 @@
 {% extends "AppCoder24/madre.html" %}
 {% block inserte_aqui_su_contenido %}
-<div>
-    <h3>Cursos de Coder - Python </h3>
+
+<h1>Cursos de Coder - Python </h1>
+{% if object_list %}
+
     <ul>
         {% for curso in object_list %}
+
         <li>
             <p>Nombre: {{ curso.nombre }}</p>
             <p>
@@ -11,8 +14,11 @@
                 <a href="{% url 'CursoUpdate' curso.id %}">Editar</a>
                 <a href="{% url 'CursoDelete' curso.id %}">Borrar</a>
             </p>
+
         </li>
         {% endfor %}
     </ul>
-</div>
+{% else %}
+<h3>No hay cursos aún!</h3>
+{% endif %}
 {% endblock %}

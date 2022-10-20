@@ -62,4 +62,6 @@ urlpatterns = [
     path("curso/<pk>'", CursoDetalle.as_view(), name="CursoDetail"),
     path("editar-perfil/", editar_perfil, name="EditarPerfil"),
     path("agregar-avatar/", agregar_avatar, name="AgregarAvatar"),
+    # Clase 25
+    path("", mostrar_inicio),
 ]
